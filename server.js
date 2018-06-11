@@ -2,9 +2,28 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
-//const port = 3000;   // = process.set.PORT // not working here
+const port =  process.env.PORT || 4000;
 
-const port = process.env.PORT | 3000;
+/*var port = null;
+
+try{
+	port = process.env.PORT;
+	console.log(port);
+}catch(errorMessage){
+	console.log(errorMessage);
+}
+
+
+if(typeof port != 'number'){
+	console.log(port , ' is not a number number');
+	try{
+		port = 4000 ;
+		console.log(port);
+	}catch(errorMessage){
+		console.log(errorMessage);
+	}
+}*/
+
 
 
 var app = express();
@@ -73,6 +92,13 @@ app.get('/about', (request, response) => {
 
 	response.render('about.hbs', {
 		pageTitle: 'About page'
+	});
+});
+
+
+app.get('/projects',(req,res) => {
+	res.render('projects.hbs',{
+		pageTitle: 'Projects'
 	});
 });
 
